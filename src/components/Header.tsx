@@ -189,10 +189,15 @@ function MobileNav({ onClose }: { onClose: () => void }) {
 }
 
 export function Header() {
+  const pathname = usePathname();
+  return <HeaderNavigation key={pathname} pathname={pathname} />;
+}
+
+// Reset menu state on navigation by remounting, not by cascading effect updates.
+function HeaderNavigation({ pathname }: { pathname: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const pathname = usePathname();
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -201,11 +206,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    setOpenMenu(null);
-    setMobileOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {

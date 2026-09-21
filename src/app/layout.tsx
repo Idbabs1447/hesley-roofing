@@ -1,23 +1,29 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { DM_Sans, Manrope, Fraunces } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer, MobileCtaBar } from "@/components/Footer";
 import { company, addressLines } from "@/content/company";
 
-const dmSans = DM_Sans({
-  subsets: ["latin"],
+const dmSans = localFont({
+  src: "../../node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2",
+  weight: "100 1000",
+  style: "normal",
   variable: "--font-dm-sans",
   display: "swap",
 });
-const manrope = Manrope({
-  subsets: ["latin"],
+const manrope = localFont({
+  src: "../../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
+  weight: "200 800",
+  style: "normal",
   variable: "--font-manrope",
   display: "swap",
 });
-const fraunces = Fraunces({
-  subsets: ["latin"],
+const fraunces = localFont({
+  src: "../../node_modules/@fontsource-variable/fraunces/files/fraunces-latin-wght-normal.woff2",
+  weight: "100 900",
+  style: "normal",
   variable: "--font-fraunces",
   display: "swap",
 });
