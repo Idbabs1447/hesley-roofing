@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { db } from "@/db";
+import { getDb } from "@/db";
 import { inspectionRequests } from "@/db/schema";
 
 export const dynamic = "force-dynamic";
@@ -38,7 +38,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    await db.insert(inspectionRequests).values({
+    await getDb().insert(inspectionRequests).values({
       name,
       phone,
       email: email || null,
